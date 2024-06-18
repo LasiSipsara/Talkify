@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background: url("/background2.avif");
+  background: url("/background.avif");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

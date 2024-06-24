@@ -1,11 +1,32 @@
 import React, { useState } from "react";
 import { BsSend } from "react-icons/bs";
+import { LiaMicrophoneSlashSolid } from "react-icons/lia";
+import { LiaMicrophoneSolid } from "react-icons/lia";
 import useSendMessage from "../../hooks/useSendMessage";
+// import SpeechRecognition, {
+//   useSpeechRecognition,
+// } from "react-speech-recognition";
+// import { toast } from "react-hot-toast";
 
 const MessageInput = () => {
   const [message, setMessage] = useState("");
   const { loading, sendMessage } = useSendMessage();
 
+  const { isMicrophoneOn, setIsMicrophoneOn } = useState(false);
+  // const {
+  //   transcript,
+  //   listening,
+  //   resetTranscript,
+  //   browserSupportsSpeechRecognition,
+  // } = useSpeechRecognition();
+
+  const handleVoiceTyping = () => {
+    // if (!browserSupportsSpeechRecognition) {
+    //   toast.error("Your Browser doesn't support speech to text");
+    // } else {
+    //   toast.error("Your Browser  support speech to text");
+    // }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!message) {
@@ -25,6 +46,18 @@ const MessageInput = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
+        <button
+          type="button"
+          className="absolute inset-y-0 end-10 flex items-center pe-3"
+          onClick={handleVoiceTyping}
+        >
+          {isMicrophoneOn ? (
+            <LiaMicrophoneSolid />
+          ) : (
+            <LiaMicrophoneSlashSolid />
+          )}
+        </button>
+
         <button
           type="submit"
           className="absolute inset-y-0 end-0 flex items-center pe-3"
